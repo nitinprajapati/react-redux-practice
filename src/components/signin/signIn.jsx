@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Button} from 'react-bootstrap';
 import {FieldGroup} from './../formGroup/formGroup';
-import FacebookLogin from 'react-facebook-login';
+//import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {LoggedIn} from './../../actions/loginActions';
 import './signIn.scss';
  
-const responseFacebook = (response) => {
-  console.log(response);
-}
+// const responseFacebook = (response) => {
+//   console.log(response);
+// }
 class LoginForm extends Component {
     constructor(props) {
         super(props);
@@ -31,7 +31,7 @@ class LoginForm extends Component {
                     <div className="col-md-4 sso-widgets">
                         <div className="col-md-2">
                             <GoogleLogin clientId="659649811970-0fevgbrj1grhp2m2eplib6ar5d9csul6.apps.googleusercontent.com"
-                                buttonText="Login"
+                                buttonText="Sign in"
                                 onSuccess={this.props.loggedin}
                                 onFailure={this.googleLoginFailure}
                             />
