@@ -3,14 +3,31 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './nav.scss';
 import { connect } from "react-redux";
+import {bindActionCreators} from 'redux';
+import {Logout} from './../../actions/loginActions';
+
+
 
 class Navigation extends Component {
+
     logout (){
         if(this.props.user.login){
             return (
-                <LinkContainer to="/Logout">
-                    <NavItem>logout</NavItem>
+                <LinkContainer to="/logout">
+                    <NavItem onClick={this.props.Logout}>logout</NavItem>
                 </LinkContainer>
+            )
+        }
+        else{
+            return(
+                <React.Fragment>
+                    <LinkContainer to="/login">
+                        <NavItem>Login</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/signup">
+                        <NavItem>SignUp</NavItem>
+                    </LinkContainer>
+                </React.Fragment>
             )
         }
     }
@@ -53,12 +70,6 @@ class Navigation extends Component {
                         {this.post()}
                     </Nav>
                     <Nav pullRight>
-                        <LinkContainer to="/login">
-                            <NavItem>Login</NavItem>
-                        </LinkContainer>
-                        <LinkContainer to="/signup">
-                            <NavItem>SignUp</NavItem>
-                        </LinkContainer>
                         {this.logout()}
                     </Nav>
                 </Navbar.Collapse>
@@ -73,4 +84,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Navigation);
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        Logout: Logout
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

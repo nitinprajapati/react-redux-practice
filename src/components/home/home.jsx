@@ -4,14 +4,10 @@ import {connect} from 'react-redux';
 import './home.scss';
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  };
-    }
-
+    
     content(){
         if(this.props.user.login){
-            const {profileObj} = this.props.user.login_user_orofile;
+            const {profileObj} = this.props.user.details;
             return (
                 <React.Fragment>
                     <h1>Welcome: {profileObj.name}</h1>
