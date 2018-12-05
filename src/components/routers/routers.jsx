@@ -1,31 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import AddPosts from './../addPosts/addPosts';
 import Posts from './../posts/posts';
 import Home  from './../home/home';
 import SignUpForm from '../signup/signUp';
 import LoginForm from '../signin/signIn';
+import { connect } from "react-redux";
 
+const authorized = (loggedIn=false, Route) =>{
+    return loggedIn ? Route : <Redirect to={"/login"} />
+}
 
-class Routers extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  };
-    }
-    render() {
-        return (
-            <div className="container body-content">
-                <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route path='/addPost' component={AddPosts} />
-                    <Route path='/posts' component={Posts} />
-                    <Route path='/login' component={LoginForm} />
-                    <Route path='/signup' component={SignUpForm} />
-                    <Redirect from='/logout' to='/'/>
-                </Switch>
-            </div>
-        );
+const Routers = (props) => {
+    return (
+        <div className="container body-content">
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/login' component={LoginForm} />
+                <Route path='/signup' component={SignUpForm} />
+                <Redirect from='/logout' to='/'/>
+
+                <Route path='/addPost' render={
+                    () => {
+                        return authorized(props.user.login, <AddPosts />);
+                    }
+                } />
+                
+                <Route path='/posts' render={
+                    () => {
+                        return authorized(props.user.login, <Posts />);
+                    }
+                } />
+            </Switch>
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.login
     }
 }
 
-export default Routers;
+export default connect(mapStateToProps, null, null, {
+  pure: false
+})(Routers);

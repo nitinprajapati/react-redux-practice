@@ -1,44 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import UserInfo from './../userInfo/userInfo';
 import './home.scss';
 
-class Home extends Component {
-    
-    content(){
-        if(this.props.user.login){
-            const {profileObj} = this.props.user.details;
-            return (
-                <React.Fragment>
-                    <h1>Welcome: {profileObj.name}</h1>
-                    <div className="user-info display-inline-block">
-                        <p className="display-inline-block">
-                            <img src={profileObj.imageUrl} alt="User icon" className="img-thumbnail user-img" />
-                        </p>
-                        <p className="display-inline-block user-details">
-                            EmailID: {profileObj.email}
-                        </p>
-                    </div>
-
-                </React.Fragment>
-            )
-        }
-        else{
-            return (
-                <React.Fragment>
-                    <h1>Simple react-redux app</h1>
-                    <p>Please <Link to={"/login"}>Login</Link> or <Link to={"/signup"}>Signup</Link> to continue...</p>
-                </React.Fragment>
-            )
-        }
+const Home = (props) =>  {
+    if(props.user.login){
+        return <UserInfo />;
     }
-
-    render() {
+    else{
         return (
-           <div className="home">
-               {this.content()}
-           </div>
-        );
+            <React.Fragment>
+                <h1>Simple react-redux app</h1>
+                <p>Please <Link to={"/login"}>Login</Link> to continue...</p>
+                <p>OR if you don't have an account. Please <Link to={"/signup"}>Signup</Link> </p>
+            </React.Fragment>
+        )
     }
 }
 

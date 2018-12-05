@@ -9,47 +9,12 @@ import {Logout} from './../../actions/loginActions';
 
 
 class Navigation extends Component {
-
-    logout (){
-        if(this.props.user.login){
-            return (
-                <LinkContainer to="/logout">
-                    <NavItem onClick={this.props.Logout}>logout</NavItem>
-                </LinkContainer>
-            )
-        }
-        else{
-            return(
-                <React.Fragment>
-                    <LinkContainer to="/login">
-                        <NavItem>Login</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/signup">
-                        <NavItem>SignUp</NavItem>
-                    </LinkContainer>
-                </React.Fragment>
-            )
-        }
+    loginClass(){
+        return this.props.user.login ? '' : 'hidden';
     }
 
-    addPost(){
-        if(this.props.user.login){
-            return (
-                <LinkContainer to="/addPost">
-                    <NavItem>Addpost</NavItem>
-                </LinkContainer>
-            )
-        }
-    }
-
-    post(){
-        if(this.props.user.login){
-            return (
-                <LinkContainer to="/posts">
-                    <NavItem>Posts</NavItem>
-                </LinkContainer>
-            )
-        }
+    logoutClass(){
+        return this.props.user.login ? 'hidden' : '';
     }
 
     render() {
@@ -66,11 +31,23 @@ class Navigation extends Component {
                         <LinkContainer exact to="/">
                             <NavItem>Home</NavItem>
                         </LinkContainer>
-                        {this.addPost()}
-                        {this.post()}
+                        <LinkContainer to="/posts" className={this.loginClass()}>
+                            <NavItem>Posts</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/addPost" className={this.loginClass()}>
+                            <NavItem>Addpost</NavItem>
+                        </LinkContainer>
                     </Nav>
                     <Nav pullRight>
-                        {this.logout()}
+                         <LinkContainer to="/login" className={this.logoutClass()}>
+                        <NavItem>Login</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/signup" className={this.logoutClass()}>
+                        <NavItem>SignUp</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/logout" className={this.loginClass()}>
+                        <NavItem onClick={this.props.Logout}>logout</NavItem>
+                    </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -91,4 +68,6 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps, mapDispatchToProps, null,{
+  pure: false
+})(Navigation);

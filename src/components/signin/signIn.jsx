@@ -29,7 +29,7 @@ class LoginForm extends Component {
                         </form>
                     </div>
                     <div className="col-md-4 sso-widgets">
-                        <div className="col-md-2">
+                        <div className="col-md-5">
                             <GoogleLogin clientId="659649811970-0fevgbrj1grhp2m2eplib6ar5d9csul6.apps.googleusercontent.com"
                                 buttonText="Sign in"
                                 onSuccess={this.props.loggedin}

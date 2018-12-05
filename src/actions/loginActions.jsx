@@ -1,19 +1,20 @@
+import * as ACTIONS from './type';
 export const LoggedIn = (loginDetails) => {
     return {
-        type: 'LOGGED_IN',
+        type: ACTIONS.LOGGED_IN,
         payload : loginDetails
     }
 }
 
 export const Initialize = (details) => {
     return {
-        type: 'INITIALIZING',
+        type: ACTIONS.INITIALIZING,
         payload: details
     }
 }
 
 export const Logout = () => {
     return {
-        type: 'LOGOUT'
+        type: ACTIONS.LOGOUT
     } 
 }

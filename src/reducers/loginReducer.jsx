@@ -1,3 +1,4 @@
+import * as ACTIONS from './../actions/type';
 const loginInitialState = {
     login: false,
     details: {}
@@ -34,9 +35,9 @@ InitState();
 
 export default (state=loginInitialState, action) => {
     switch(action.type){
-        case 'LOGGED_IN': state = loggedIN(action.payload); break;
-        case 'INITIALIZING': state = INITIALIZING(action.payload); break;
-         case 'LOGOUT': state = logout(); break;
+        case ACTIONS.LOGGED_IN: state = loggedIN(action.payload); break;
+        case ACTIONS.INITIALIZING: state = INITIALIZING(action.payload); break;
+        case ACTIONS.LOGOUT: state = logout(); break;
         default:;
     }
     return state;
