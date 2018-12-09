@@ -9,6 +9,13 @@ import {LoggedIn} from './../../actions/loginActions';
 import './signIn.scss';
  
 class LoginForm extends Component {
+
+    responseFacebook = (response) => {
+        console.log(JSON.stringify(response));
+        response.vender = "fb";
+        this.props.loggedin(response);
+    }
+
     
     render() {
         return (
@@ -30,7 +37,7 @@ class LoginForm extends Component {
                             />
                             </div>
                             <div className="col-md-6">
-                                <FacebookLogin appId="1532872416956208" autoLoad={true} fields="name,email,picture" onClick={"componentClicked"} callback={responseFacebook} />
+                                <FacebookLogin appId="1532872416956208" autoLoad={true} fields="name,email,picture" onClick={"componentClicked"} callback={this.responseFacebook} />
                             </div>
 
                         </div>
@@ -40,11 +47,6 @@ class LoginForm extends Component {
     }
 }
 
-const responseFacebook = (response) => {
-    console.log(JSON.stringify(response));
-    response.vender = "fb";
-    this.props.loggedin(response);
-}
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
