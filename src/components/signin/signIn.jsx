@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import { Button} from 'react-bootstrap';
 import {FieldGroup} from './../formGroup/formGroup';
-//import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {LoggedIn} from './../../actions/loginActions';
 import './signIn.scss';
  
-// const responseFacebook = (response) => {
-//   console.log(response);
-// }
 class LoginForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
     
     render() {
         return (
@@ -37,7 +30,7 @@ class LoginForm extends Component {
                             />
                             </div>
                             <div className="col-md-6">
-                                {/*<FacebookLogin appId="1532872416956208" autoLoad={true} fields="name,email,picture" onClick={"componentClicked"} callback={responseFacebook} />*/}
+                                <FacebookLogin appId="1532872416956208" autoLoad={true} fields="name,email,picture" onClick={"componentClicked"} callback={responseFacebook} />
                             </div>
 
                         </div>
@@ -46,7 +39,9 @@ class LoginForm extends Component {
         );
     }
 }
+const responseFacebook = (response) => {
 
+}
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         loggedin: LoggedIn

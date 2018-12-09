@@ -18,3 +18,10 @@ export const Logout = () => {
         type: ACTIONS.LOGOUT
     } 
 }
+
+export const manualLogin = (formData) => {
+    return {
+        type: ACTIONS.LOGIN_BY_ID_AND_PASSWORD,
+        payload: formData
+    } 
+}

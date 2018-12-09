@@ -1,7 +1,12 @@
 import * as ACTIONS from './../actions/type';
 const loginInitialState = {
     login: false,
-    details: {}
+    details: {},
+    error: false,
+    fetching: false,
+    loaderType: 'line-scale',
+    message: 'Loading posts. Please wait...',
+    color: '#02a17c'
 };
 
 const loggedIN = (action) => {
@@ -35,9 +40,29 @@ InitState();
 
 export default (state=loginInitialState, action) => {
     switch(action.type){
-        case ACTIONS.LOGGED_IN: state = loggedIN(action.payload); break;
-        case ACTIONS.INITIALIZING: state = INITIALIZING(action.payload); break;
-        case ACTIONS.LOGOUT: state = logout(); break;
+        case ACTIONS.LOGGED_IN: 
+        case ACTIONS.LOGIN_BY_ID_AND_PASSWORD: 
+            state = loggedIN(action.payload); break;
+
+        case ACTIONS.INITIALIZING: 
+            state = INITIALIZING(action.payload); break;
+
+        case ACTIONS.LOGOUT: 
+            state = logout(); break;
+
+        case ACTIONS.API_CALL_FAILURE :  
+            state =  {
+                ...state,
+                error: true,
+                fetching: false
+            }; break;
+            
+        case ACTIONS.API_CALLING: 
+            return {
+                ...state,
+                fetching: true
+            }
+
         default:;
     }
     return state;

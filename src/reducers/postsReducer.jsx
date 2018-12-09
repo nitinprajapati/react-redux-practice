@@ -25,7 +25,7 @@ export default (state=initialPosts, actions) => {
                 fetching: false
             };
 
-        case ACTIONS.FETCHING_POSTS: 
+        case ACTIONS.API_CALLING: 
             return {
                 ...state,
                 fetching: true

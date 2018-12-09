@@ -3,7 +3,7 @@ import * as ACTIONS from "./../actions/type";
 import axios from "axios";
 
 export function* watcherSaga() {
-  yield takeLatest(ACTIONS.FETCHING_POSTS, fetchPosts);
+  yield takeLatest(ACTIONS.API_CALLING, fetchPosts);
 }
 
 const fetchData = () => {
