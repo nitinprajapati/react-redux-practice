@@ -40,7 +40,7 @@ class LoginForm extends Component {
     }
 }
 const responseFacebook = (response) => {
-
+    console.log(JSON.stringify(response));
 }
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
