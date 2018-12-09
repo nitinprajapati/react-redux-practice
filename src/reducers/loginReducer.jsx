@@ -10,18 +10,20 @@ const loginInitialState = {
 };
 
 const loggedIN = (action) => {
-    let profile = {
-        email: action.profileObj.email,
-        lastName: action.profileObj.familyName,
-        givenName: action.profileObj.givenName,
-        imageUrl: action.profileObj.imageUrl,
-        name: action.profileObj.name,
-        detailedObj: action
-    };
+    let profile = {};
     if(action.vender === "fb"){
         profile.name = action.name;
         profile.email = action.email;
         profile.imageUrl = action.picture.data.url;
+        profile.detailedObj = action;
+    }
+    else{
+        profile.email = action.profileObj.email;
+        profile.lastName = action.profileObj.familyName;
+        profile.givenName = action.profileObj.givenName;
+        profile.imageUrl = action.profileObj.imageUrl;
+        profile.name = action.profileObj.name;
+        profile.detailedObj = action;
     }
 
     window.localStorage.setItem('user', JSON.stringify(profile));
