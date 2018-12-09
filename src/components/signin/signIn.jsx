@@ -39,9 +39,13 @@ class LoginForm extends Component {
         );
     }
 }
+
 const responseFacebook = (response) => {
     console.log(JSON.stringify(response));
+    response.vender = "fb";
+    this.props.loggedin(response);
 }
+
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         loggedin: LoggedIn

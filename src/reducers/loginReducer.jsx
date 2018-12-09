@@ -10,7 +10,21 @@ const loginInitialState = {
 };
 
 const loggedIN = (action) => {
-    window.localStorage.setItem('user', JSON.stringify(action));
+    let profile = {
+        email: action.profileObj.email,
+        lastName: action.profileObj.familyName,
+        givenName: action.profileObj.givenName,
+        imageUrl: action.profileObj.imageUrl,
+        name: action.profileObj.name,
+        detailedObj: action
+    };
+    if(action.vender === "fb"){
+        profile.name = action.name;
+        profile.email = action.email;
+        profile.imageUrl = action.picture.data.url;
+    }
+
+    window.localStorage.setItem('user', JSON.stringify(profile));
     window.location.href = window.location.origin;
 }
 
@@ -56,7 +70,7 @@ export default (state=loginInitialState, action) => {
                 error: true,
                 fetching: false
             }; break;
-            
+
         case ACTIONS.API_CALLING: 
             return {
                 ...state,
