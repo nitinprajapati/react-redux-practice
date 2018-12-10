@@ -37,7 +37,7 @@ class LoginForm extends Component {
                             />
                             </div>
                             <div className="col-md-6">
-                                <FacebookLogin appId="1532872416956208" autoLoad={true} fields="name,email,picture" onClick={"componentClicked"} callback={this.responseFacebook} />
+                                <FacebookLogin appId="1532872416956208" autoLoad={false} fields="name,email,picture" onClick={"componentClicked"} callback={this.responseFacebook} />
                             </div>
 
                         </div>
