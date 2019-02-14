@@ -7,7 +7,9 @@ import Spinner from "./../loader/spinner";
 
 class Posts extends Component {
     componentDidMount(){
-      this.props.getPosts(); 
+        if(this.props.posts.data.length === 0){
+            this.props.getPosts(); 
+        }
     }
 
     error(){

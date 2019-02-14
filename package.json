@@ -19,6 +19,7 @@
     "react-router-bootstrap": "^0.24.4",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "reactjs-toastr": "^1.1.0",
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2"
   },
@@ -28,6 +29,7 @@
     "test": " nyc --reporter=html --reporter=text mocha",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://127.0.0.1:81/v1/",
   "eslintConfig": {
     "extends": "react-app"
   },

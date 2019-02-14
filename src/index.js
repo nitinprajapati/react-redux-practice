@@ -8,7 +8,7 @@ import {createStore, applyMiddleware, compose } from 'redux';
 import allReducers from './reducers/index';
 import 'bootstrap/dist/css/bootstrap.css';
 import createSagaMiddleware from 'redux-saga';
-import { watcherSaga } from "./sagas/postSaga";
+import { watcherSaga } from "./sagas/indexSaga";
 
 // dev tools middleware
 const reduxDevTools =

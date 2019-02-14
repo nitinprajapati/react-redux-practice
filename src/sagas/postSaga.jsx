@@ -1,10 +1,6 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
-import * as ACTIONS from "./../actions/type";
 import axios from "axios";
-
-export function* watcherSaga() {
-  yield takeLatest(ACTIONS.API_CALLING, fetchPosts);
-}
+import { call, put } from 'redux-saga/effects'
+import * as ACTIONS from "../actions/type";
 
 const fetchData = () => {
   return axios({
@@ -13,7 +9,7 @@ const fetchData = () => {
   });
 }
 
-function* fetchPosts() {    
+export function* fetchPosts() {    
     try {
         const posts = yield call(fetchData);
         yield put({ type: ACTIONS.POSTS_RECIEVED, payload:posts})

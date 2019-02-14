@@ -5,9 +5,13 @@ const loginInitialState = {
     error: false,
     fetching: false,
     loaderType: 'line-scale',
-    message: 'Loading posts. Please wait...',
+    message: 'Verifying details. Please wait...',
     color: '#02a17c'
 };
+
+const apiLogin = (payload) => {
+    loggedIN(payload);
+}
 
 const loggedIN = (action) => {
     let profile = {};
@@ -16,6 +20,9 @@ const loggedIN = (action) => {
         profile.email = action.email;
         profile.imageUrl = action.picture.data.url;
         profile.detailedObj = action;
+    }
+    else if(action.vender === 'local'){
+
     }
     else{
         profile.email = action.profileObj.email;
@@ -57,7 +64,6 @@ InitState();
 export default (state=loginInitialState, action) => {
     switch(action.type){
         case ACTIONS.LOGGED_IN: 
-        case ACTIONS.LOGIN_BY_ID_AND_PASSWORD: 
             state = loggedIN(action.payload); break;
 
         case ACTIONS.INITIALIZING: 
@@ -67,18 +73,20 @@ export default (state=loginInitialState, action) => {
             state = logout(); break;
 
         case ACTIONS.API_CALL_FAILURE :  
-            state =  {
+            return {
                 ...state,
                 error: true,
                 fetching: false
-            }; break;
+            }; 
 
-        case ACTIONS.API_CALLING: 
+        case ACTIONS.LOGIN_BY_ID_AND_PASSWORD: 
             return {
                 ...state,
                 fetching: true
             }
 
+        case ACTIONS.LOGIN_VALIDATED: 
+                state = apiLogin(action.payload); break;
         default:;
     }
     return state;

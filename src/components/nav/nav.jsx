@@ -22,7 +22,7 @@ class Navigation extends Component {
             <Navbar default fixedTop fluid collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#bb">React-Bootstrap</a>
+                        <a href="#bb">ChitChat</a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
