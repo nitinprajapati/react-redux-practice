@@ -29,7 +29,6 @@
     "test": " nyc --reporter=html --reporter=text mocha",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://127.0.0.1:81/v1/",
   "eslintConfig": {
     "extends": "react-app"
   },
