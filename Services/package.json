@@ -11,7 +11,7 @@
     "express": "^4.16.4",
     "express-mongo-db": "^2.0.4",
     "md5": "^2.2.1",
-    "mongodb": "^3.1.10",
+    "mongodb": "^3.1.13",
     "mongojs": "^2.6.0",
     "mongoose": "^5.3.16",
     "path": "^0.12.7"
